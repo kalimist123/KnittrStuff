@@ -1,0 +1,727 @@
+---
+title: "HIPAA Identifiers Report"
+subtitle: '`r format(Sys.Date(), "%B %d, %Y")`'
+fontsize: 10pt
+geometry: margin=0.5cm
+output:
+  pdf_document:
+    includes:
+        in_header: mySty.sty
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(xtable.comment = FALSE,echo = FALSE,comment=NA,message=FALSE, warning=FALSE)
+```
+
+\pagebreak
+
+###Copy of DeepSee_Diaceutics_20170208_20170228_v1.csv
+
+```{r f1,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("Copy of DeepSee_Diaceutics_20170208_20170228_v1.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=100L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+
+if(nrow(report$getNameChanges()>0)){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+  
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+  
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+
+ 
+```
+
+
+\clearpage
+
+
+###DeepSee_Diaceutics_20170301_20170320v2_deiddb.csv
+
+
+```{r f25,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("DeepSee_Diaceutics_20170301_20170320v2_deiddb.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=100L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getPatientIdentifiers()>0)){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+  
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+  
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+
+\clearpage
+
+
+###diaceutic query 2_deid.csv
+
+```{r f2,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("diaceutic query 2_deid.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=100L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getPatientIdentifiers()>0)){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+  
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+  
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+\clearpage
+
+
+###Diaceutics 032117_033117v3.csv
+
+```{r f3,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("Diaceutics 032117_033117v3.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=100L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+# 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+\clearpage
+
+###Diaceutics 04012017_04132017deid.csv
+
+
+```{r f4,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("Diaceutics 04012017_04132017deid.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=100L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+# 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+\clearpage
+
+
+###Diaceutics onco 020817_032017_deid_db.csv
+
+```{r f5,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("Diaceutics onco 020817_032017_deid_db.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=100L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+# 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+\clearpage
+
+
+###Diaceutics v2_deid_061517.csv
+
+```{r f6,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("Diaceutics v2_deid_061517.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=100L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+# 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+
+\clearpage
+
+###diaceutics_0701_312017_deid.csv
+
+```{r f7,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("diaceutics_0701_312017_deid.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=60L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" ,tabular.environment="longtable")
+}
+# 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+
+\clearpage
+
+
+###Diaceutics_20170114_20170207_new1_update.csv
+
+```{r f8,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("Diaceutics_20170114_20170207_new1_update.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=60L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" ,tabular.environment="longtable")
+}
+# 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+\clearpage
+
+###LBCL_010116_043017_deid.csv
+
+```{r f9,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("LBCL_010116_043017_deid.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=60L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" ,tabular.environment="longtable")
+}
+# 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+\clearpage
+
+###Oncolgy_Diaceuticsv3_1211_0113.csv
+
+```{r f10,results="asis"}
+
+source("Report.r")
+     
+library(knitr)
+library(data.table)
+library(xtable)
+options(xtable.comment = FALSE)
+
+     reportParams = ReportParameters$new(dataFile=tolower("Oncolgy_Diaceuticsv3_1211_0113.csv"), showOriginal = FALSE,extractedTextLength=95L, instancesToShow=60L,   wrapTextWidth=40L )
+report<-Report$new(reportParams)
+
+safeDataFileName<-gsub('_', ' ', reportParams$dataFile)
+
+print(xtable(report$ShowTotalsdt(),align= c("|p{0cm}|", "p{6cm}|" ,"p{11cm}|"),caption=paste0(safeDataFileName," totals")),include.rownames=FALSE,caption.placement = "top")
+
+
+if(nrow(report$getSurgicalNumbers())>0){
+ tab<- xtable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " surgical numbers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" ,tabular.environment="longtable")
+}
+ 
+if(nrow(report$getPatientIdentifiers())>0){
+ tab<- xtable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " patient identifiers"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getNameChanges())>0){
+ tab<- xtable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption=paste0(safeDataFileName, " name changes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getpatientDateOfBirth())>0)
+{
+ tab<- xtable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=60)),caption=paste0(safeDataFileName, " patient date of birth"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  names(tab) <- c('Row','Text' )
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatDates())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatDates()[,c("rownumber","patient draw date")],n=60)),caption=paste0(safeDataFileName, " patient draw dates"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getPatAgeOverMax())>0)
+{
+ tab<- xtable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patient age over max")],n=60)),caption=paste0(safeDataFileName, " patient age over max"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+if(nrow(report$getValidZipCodes())>0)
+{
+ tab<- xtable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","patient address postal code")],n=60)),caption=paste0(safeDataFileName, " valid zip codes"),align= c("p{0cm}|", "p{2cm}|" ,"p{15cm}|"))
+  print(tab,include.rownames=FALSE,caption.placement = "top" )
+}
+
+ 
+```
+
+

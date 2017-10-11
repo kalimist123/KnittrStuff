@@ -1,0 +1,549 @@
+---
+title: "Diaceutics PI Report 02/09/2016"
+fontsize: 10pt
+geometry: margin=0.5cm
+output:
+  pdf_document:
+    includes:
+        in_header: mySty.sty
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,comment=NA,message=FALSE, warning=FALSE,fig.align="center")
+```
+
+
+
+###Copy of DeepSee_Diaceutics_20170208_20170228_v1.csv
+```{r pressure}
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="Copy of DeepSee_Diaceutics_20170208_20170228_v1.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges()>0))
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+
+
+if(nrow(report$getPatAgeOverMax())>0)
+kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+
+if(nrow(report$getValidZipCodes())>0)
+kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+```
+
+
+\pagebreak
+
+
+###DeepSee_Diaceutics_20170301_20170320v2_deiddb.csv
+```{r pressure2}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="DeepSee_Diaceutics_20170301_20170320v2_deiddb.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+if(nrow(report$getSurgicalNumbers()>0))
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers()>0))
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges()>0))
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+
+
+if(nrow(report$getPatAgeOverMax())>0)
+kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Examples Of Patient Age Over Max"),align="l")
+
+if(nrow(report$getValidZipCodes())>0)
+kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+
+
+
+
+\pagebreak
+
+
+### diaceutic query 2_deid.csv
+```{r pressure3}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="diaceutic query 2_deid.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+
+
+if(nrow(report$getPatAgeOverMax())>0)
+kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+
+if(nrow(report$getValidZipCodes())>0)
+kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+
+
+
+\pagebreak
+
+
+###Diaceutics 032117_033117v3
+```{r pressure4}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="Diaceutics 032117_033117v3.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+\pagebreak
+
+###Diaceutics 04012017_04132017deid.csv
+```{r pressure5}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="Diaceutics 04012017_04132017deid.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+\pagebreak
+
+
+###Diaceutics onco 020817_032017_deid_db.csv
+```{r pressure6}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="Diaceutics onco 020817_032017_deid_db.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+
+\pagebreak
+
+###Diaceutics v2_deid_061517.csv
+```{r pressure7}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="Diaceutics v2_deid_061517.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+\pagebreak
+
+
+###diaceutics_0701_312017_deid.csv
+```{r pressure8}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="diaceutics_0701_312017_deid.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+\pagebreak
+
+###Diaceutics_20170114_20170207_new1_update.csv
+```{r pressure9}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="Diaceutics_20170114_20170207_new1_update.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, "  Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+
+\pagebreak
+
+###LBCL_010116_043017_deid.csv###
+```{r pressure10}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="LBCL_010116_043017_deid.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+
+\pagebreak
+
+
+###Oncolgy_Diaceuticsv3_1211_0113.csv
+```{r pressure11}
+
+source("Report.r")
+
+     reportParams = ReportParameters$new(dataFile="Oncolgy_Diaceuticsv3_1211_0113.csv", showOriginal = FALSE,extractedTextLength=90L, instancesToShow=100L, printInstances =FALSE,  wrapTextWidth=40L )
+
+
+report<-Report$new(reportParams)
+
+     
+library(knitr)
+library(data.table)
+library(kableExtra)
+
+ kable(report$ShowTotalsdt(),caption =  paste0(reportParams$dataFile, " Total Counts"),align="l") 
+
+
+if(nrow(report$getSurgicalNumbers())>0)
+kable(as.data.table(head(report$getSurgicalNumbers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Surgical Numbers"),align="l")  
+
+if(nrow(report$getPatientIdentifiers())>0)
+kable(as.data.table(head(report$getPatientIdentifiers()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Identifiers"),align="l") 
+
+if(nrow(report$getNameChanges())>0)
+kable(as.data.table(head(report$getNameChanges()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Name Changes"),align="l") 
+
+if(nrow(report$getpatientDateOfBirth())>0)
+kable(as.data.table(head(report$getpatientDateOfBirth()[,c("rownumber","obfuscatedtext")],n=reportParams$instancesToShow)), caption = paste0(reportParams$dataFile, " Patient Date Of Birth"),align="l") 
+
+if(nrow(report$getPatDates())>0)
+kable(as.data.table(head(report$getPatDates()[,c("rownumber","patientdrawdate")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile, " Patient Draw Dates"),align="l")
+ 
+ 
+ if(nrow(report$getPatAgeOverMax())>0)
+ kable(as.data.table(head(report$getPatAgeOverMax()[,c("rownumber","patientage")],n=reportParams$instancesToShow)),caption = paste0(reportParams$dataFile," Patient Age Over Max"),align="l")
+ 
+ if(nrow(report$getValidZipCodes())>0)
+ kable(as.data.table(head(report$getValidZipCodes()[,c("rownumber","cleanzipcodes")],n=reportParams$instancesToShow)),caption =  paste0(reportParams$dataFile," Valid Zip Codes"),align="l")
+
+
+
+
+
+```
+
+
+
+

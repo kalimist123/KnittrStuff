@@ -1,0 +1,191 @@
+---
+title: "HIPAA Identifiers Report"
+subtitle: '`r format(Sys.Date(), "%B %d, %Y")`'
+fontsize: 10pt
+geometry: margin=0.5cm
+output:
+  pdf_document:
+    includes:
+        in_header: mySty.sty
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(xtable.comment = FALSE,echo = FALSE,comment=NA,message=FALSE, warning=FALSE)
+```
+
+
+
+\pagestyle{plain}
+
+
+
+```{r f1,results="asis"}
+
+source("Report.r")
+
+library(knitr)
+library(data.table)
+library(xtable)
+
+
+addtorow          <- list()
+addtorow$pos      <- list()
+addtorow$pos[[1]] <- c(0)
+addtorow$command  <- c(paste("\\hline \n",
+                             "\\endhead \n",
+                             "\\hline \n",
+                             "{\\footnotesize Continued..} \n",
+                             "\\endfoot \n",
+                             "\\endlastfoot \n",sep=""))
+
+
+
+
+
+
+
+print_instances = function(instances,
+columnNames,
+column_definition,
+title,
+reportParams) {
+  
+samples_label<-""  
+if (nrow(instances) > 0) {
+total_samples = as.integer(nrow(instances))
+if (isTRUE(all.equal(total_samples,reportParams$instancesToShow))){
+  
+  samples_label<-paste0("(first ", reportParams$instancesToShow,")") 
+            
+                        
+}
+
+
+cat("\n\n\\clearpage\n")
+cat('\n###', paste(reportParams$dataFile, title), '\n')
+
+tab <-
+xtable(
+as.data.table(head(instances[, columnNames], n = reportParams$instancesToShow)),
+caption = paste0(
+safeDataFileName,
+" ",
+title,
+" ",
+samples_label
+),
+align = column_definition
+)
+print(tab,
+include.rownames = FALSE,
+caption.placement = "top",tabular.environment="longtable",floating=FALSE, 
+
+      add.to.row = addtorow,     # this is where you actually make the substitution
+      hline.after=c(-1))         # because addtorow will substitute the default hline for the first row)
+
+}
+}
+
+
+options(
+xtable.comment = FALSE,
+xtable.table.placement = "!htp",
+tabular.environment = "longtable"
+)
+column_definition <- c("p{0cm}|", "p{1.5cm}|" , "p{15cm}|")
+
+for (csv in dir(pattern = ".csv$"))
+{
+reportParams = ReportParameters$new(
+dataFile = csv,
+showOriginal = TRUE,
+extractedTextLength = 90L,
+instancesToShow = 250L
+)
+report <- Report$new(reportParams)
+safeDataFileName <- gsub('_', ' ', reportParams$dataFile)
+
+cat("\n\n\\clearpage\n")
+cat('\n##', paste(reportParams$dataFile), '\n')
+
+
+
+print(
+xtable(
+report$ShowTotalsdt(),
+align = c("|p{0cm}|", "p{6cm}|" , "p{11cm}|") ,
+caption = paste0(safeDataFileName, " Total PHI Identifier Counts")
+),
+include.rownames = FALSE,
+caption.placement = "top"
+)
+
+
+print_instances(
+instances = report$getSurgicalNumbers(),
+columnNames = c("rownumber", "obfuscatedtext"),
+column_definition,
+title = "Surgical Numbers",
+reportParams
+)
+
+print_instances(
+instances = report$getPatientIdentifiers(),
+columnNames = c("rownumber", "obfuscatedtext"),
+column_definition,
+title = "Patient Identifiers",
+reportParams
+)
+
+print_instances(
+instances = report$getNameChanges(),
+columnNames = c("rownumber", "obfuscatedtext"),
+column_definition,
+title = "Name Changes",
+reportParams
+)
+
+print_instances(
+instances = report$getpatientDateOfBirth(),
+columnNames = c("rownumber", "obfuscatedtext"),
+column_definition,
+title = "Patient Date Of Birth",
+reportParams
+)
+
+print_instances(
+instances = report$getPatDates(),
+columnNames = c("rownumber", "patient draw date"),
+column_definition,
+title = "Patient Draw Dates",
+reportParams
+)
+
+print_instances(
+instances = report$getPatAgeOverMax(),
+columnNames = c("rownumber", "patient age over max"),
+column_definition,
+title = "Patient Over Age Max",
+reportParams
+)
+
+print_instances(
+instances = report$getValidZipCodes(),
+columnNames = c("rownumber", "patient address postal code"),
+column_definition,
+title = "patient address postal code",
+reportParams
+)
+
+
+   }
+
+
+  
+
+
+
+
+ 
+```
